@@ -1,0 +1,97 @@
+﻿@using ExchangeRates.Models
+@model List<Currency>
+@{
+
+    ViewBag.Title = "Home Page";
+    List<ExchangeRates.Models.Currency> dovizler = ViewBag.currencies as List<ExchangeRates.Models.Currency>; // as ile model i seçiyoruz ki aşağıda foreach işleminde Unit, Isim, CurrenyName gibi değerleri intellisense özelliği ile görebilelim.
+
+}
+
+
+
+<table width="100%">
+    <thead>
+        <tr>
+            <th>Döviz Kodu<br />Currency Code</th>
+            <th>Birim<br />Unit</th>
+            <th>Döviz Cinsi<br />Currency</th>
+            <th>Döviz Alış<br />Forex Buying</th>
+            <th>Döviz Satış<br />Forex Selling</th>
+            <th>Efektif Alış<br />Banknote Buying</th>
+            <th>Efektif Satış<br />Banknote Selling</th>
+            <th>Tarih<br />Date</th>
+            <th>Yapı Kredi Alış<br />Yapı Kredi Buying</th>
+            <th>Yapı Kredi Satış<br />Yapı Kredi Selling</th>
+            <th>Güncelleme Tarihi<br />Update Date</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+
+            if (d.CurrencyCode != "XDR")
+            {
+
+                string img = "http://www.tcmb.gov.tr/kurlar/kurlar_tr_dosyalar/images/" + d.CurrencyCode + ".gif";
+
+        <tr>
+            <td>
+                <img src="@img" />
+                @d.CurrencyCode / TRY
+            </td>
+            <td>@d.Unit</td>
+            <td>@d.Isim</td>
+            @*<td>@d.CurrencyName</td>*@
+            <td>@d.ForexBuying</td>
+            <td>@d.ForexSelling</td>
+            <td>@d.BanknoteBuying</td>
+            <td>@d.BanknoteSelling</td>
+            <td>@ViewBag.Tarih.ToShortDateString()</td>
+            <td>@d.YapiKrediAlis</td>
+            <td>@d.YapiKrediSatis</td>
+            <td>@DateTime.Now</td>
+            @*<td>@d.CrossRateUSD</td>
+        <td>@d.CrossRateOther</td>*@
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>*@
+
+@*<div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
